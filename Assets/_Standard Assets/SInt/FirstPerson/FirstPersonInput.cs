@@ -37,9 +37,9 @@ namespace StandardAssets.Characters.FirstPerson
 		/// Handles the sprint input
 		/// </summary>
 		/// <param name="context">context is required by the performed event</param>
-		public override void OnSprint(InputAction.CallbackContext context)
+		public override void OnSprint()
 		{
-			base.OnSprint(context);
+			base.OnSprint();
 			m_IsCrouching = false;
 		}
 		
@@ -47,7 +47,7 @@ namespace StandardAssets.Characters.FirstPerson
 		/// Handles the crouch input
 		/// </summary>
 		/// <param name="context">context is required by the performed event</param>
-		public override void OnCrouch(InputAction.CallbackContext context)
+		public override void OnCrouch()
 		{
 			BroadcastInputAction(ref m_IsCrouching, crouchStarted, crouchEnded);
 			isSprinting = false;

@@ -30,7 +30,7 @@ namespace StandardAssets.Characters.ThirdPerson
 		bool m_IsStrafing;
 		
 		// Handles the recentre input 
-		public override void OnRecentre(InputAction.CallbackContext context)
+		public override void OnRecentre()
 		{
 			if (recentreCamera != null)
 			{
@@ -39,9 +39,9 @@ namespace StandardAssets.Characters.ThirdPerson
 		}
 
 		// Handles the strafe input
-		public override void  OnStrafe(InputAction.CallbackContext context)
+		public override void  OnStrafe()
 		{
-			if (context.performed)
+			// if (context.performed)
 			{
 				BroadcastInputAction(ref m_IsStrafing, strafeStarted, strafeEnded);
 			}
