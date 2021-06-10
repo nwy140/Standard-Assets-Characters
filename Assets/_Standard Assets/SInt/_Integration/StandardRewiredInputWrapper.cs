@@ -94,16 +94,13 @@ public class StandardRewiredInputWrapper : MonoBehaviour // Rewired Wrapper For 
         #region Rewired Rewired Input Event Bindings
 
         #region 0 : Default
-
-        // MoveHorizontal,
         // This event will be called every frame the "Move Horizontal" axis is non-zero and once more when it returns to zero.
-        player.AddInputEventDelegate(_charInput.OnMoveX, UpdateLoopType.Update, InputActionEventType.AxisActive, 
+        player.AddInputEventDelegate(_charInput.OnMoveX, UpdateLoopType.Update, InputActionEventType.AxisActiveOrJustInactive, 
             nameof(Btns.MoveHorizontal));
-        
         // MoveVertical,
         // This event will be called every frame the "Move Horizontal" axis is non-zero and once more when it returns to zero.
-        // player.AddInputEventDelegate(_charInput.OnMoveY, UpdateLoopType.Update, InputActionEventType.AxisActiveOrJustInactive, 
-        //     nameof(Btns.MoveVertical));
+        player.AddInputEventDelegate(_charInput.OnMoveY, UpdateLoopType.Update, InputActionEventType.AxisActiveOrJustInactive, 
+            nameof(Btns.MoveVertical));
         // Empty,
         // This event will be called when the "Empty" button is held for at least 1 seconds and then released
         player.AddInputEventDelegate(EmptyMethodLog, UpdateLoopType.Update, InputActionEventType.ButtonPressedForTimeJustReleased,   
@@ -115,6 +112,9 @@ public class StandardRewiredInputWrapper : MonoBehaviour // Rewired Wrapper For 
 
         // Evade,
         // Jump,
+        // This event will be called every frame the "Attack" action is updated
+        player.AddInputEventDelegate(_charInput.OnJump, UpdateLoopType.Update, 
+            nameof(Btns.Jump));
         // Run,
 
         #endregion 1 : Motion
@@ -124,7 +124,7 @@ public class StandardRewiredInputWrapper : MonoBehaviour // Rewired Wrapper For 
 
         #region 2 : Activity
         // This event will be called every frame the "Attack" action is updated
-        player.AddInputEventDelegate(_charInput.OnJump, UpdateLoopType.Update, 
+        player.AddInputEventDelegate(EmptyMethodStub, UpdateLoopType.Update, 
             nameof(Btns.Attack));
 
         // This event will be called when the "Attack" button is first pressed

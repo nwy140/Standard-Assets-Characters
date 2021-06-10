@@ -416,19 +416,9 @@ namespace StandardAssets.Characters.Common
         /// <param name="data">data is required for GetButton</param>
         public void OnMoveX(InputActionEventData data)
         {
-            if (data.GetButtonDown())
-            {
-                moveInput = data.player.GetAxis2D("MoveHorizontal","MoveVertical") * 100;
-                // Multiplying vector3.right for getting x axis value without creating a new vector for optimization
-                // moveInput = Vector2.right * data.player.GetAxis(data.actionName)
-                //             + Vector2.up * moveInput.y ;
-                // moveInput = new Vector2(data.GetAxis(), 0);
-                // Debug.Log(data.GetAxis());
-            }
-            else if (data.GetButtonUp())
-            {
-                moveInput = Vector2.zero;
-            }
+            // Multiplying vector3.right for getting x axis value without creating a new vector for optimization
+            moveInput = Vector2.right * data.player.GetAxis(data.actionName)
+                        + Vector2.up * moveInput.y;
         }
 
         /// <summary>
@@ -437,17 +427,9 @@ namespace StandardAssets.Characters.Common
         /// <param name="data">data is required for GetButton</param>
         public void OnMoveY(InputActionEventData data)
         {
-            if (data.GetButtonDown())
-            {
-                // moveInput = data.player.GetAxis2D() data.actionName;
-                // Multiplying vector3.right for getting x axis value without creating a new vector for optimization
-                moveInput = Vector2.right * moveInput.x
-                            + Vector2.up * data.player.GetAxis(data.actionName);
-            }
-            else if (data.GetButtonUp())
-            {
-                moveInput = Vector2.zero;
-            }
+            // Multiplying vector3.right for getting x axis value without creating a new vector for optimization
+            moveInput = Vector2.right * moveInput.x
+                        + Vector2.up * data.player.GetAxis(data.actionName);
         }
 
         #endregion SInt's Event Methods
