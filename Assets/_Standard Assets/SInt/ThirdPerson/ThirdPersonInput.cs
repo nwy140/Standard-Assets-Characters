@@ -1,7 +1,6 @@
 using System;
 using StandardAssets.Characters.Common;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 
 namespace StandardAssets.Characters.ThirdPerson

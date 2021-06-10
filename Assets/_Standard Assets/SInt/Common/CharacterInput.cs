@@ -1,7 +1,6 @@
 ﻿using System;
 using Cinemachine;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 
 namespace StandardAssets.Characters.Common

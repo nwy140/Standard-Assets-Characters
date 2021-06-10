@@ -1,6 +1,5 @@
 using System;
 using StandardAssets.Characters.Common;
-using UnityEngine.InputSystem;
 
 
 namespace StandardAssets.Characters.FirstPerson
