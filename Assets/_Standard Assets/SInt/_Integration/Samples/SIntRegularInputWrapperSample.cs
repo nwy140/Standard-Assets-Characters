@@ -18,7 +18,7 @@ using UnityEngine;
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                _characterInput.OnJump();
+                // _characterInput.OnJump();
             }
         }
     }

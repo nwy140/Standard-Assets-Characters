@@ -1,5 +1,6 @@
 ﻿using System;
 using Cinemachine;
+using Rewired;
 using UnityEngine;
 
 
@@ -407,24 +408,69 @@ namespace StandardAssets.Characters.Common
             }
         }
 
+        #region SInt's Event Methods
+
+        /// <summary>
+        /// Provides the input vector for the move control.
+        /// </summary>
+        /// <param name="data">data is required for GetButton</param>
+        public void OnMoveX(InputActionEventData data)
+        {
+            if (data.GetButtonDown())
+            {
+                moveInput = data.player.GetAxis2D("MoveHorizontal","MoveVertical") * 100;
+                // Multiplying vector3.right for getting x axis value without creating a new vector for optimization
+                // moveInput = Vector2.right * data.player.GetAxis(data.actionName)
+                //             + Vector2.up * moveInput.y ;
+                // moveInput = new Vector2(data.GetAxis(), 0);
+                // Debug.Log(data.GetAxis());
+            }
+            else if (data.GetButtonUp())
+            {
+                moveInput = Vector2.zero;
+            }
+        }
+
+        /// <summary>
+        /// Provides the input vector for the move control.
+        /// </summary>
+        /// <param name="data">data is required for GetButton</param>
+        public void OnMoveY(InputActionEventData data)
+        {
+            if (data.GetButtonDown())
+            {
+                // moveInput = data.player.GetAxis2D() data.actionName;
+                // Multiplying vector3.right for getting x axis value without creating a new vector for optimization
+                moveInput = Vector2.right * moveInput.x
+                            + Vector2.up * data.player.GetAxis(data.actionName);
+            }
+            else if (data.GetButtonUp())
+            {
+                moveInput = Vector2.zero;
+            }
+        }
+
+        #endregion SInt's Event Methods
+
         /// <summary>
         /// Handles the jump event from the new input system.
         /// </summary>
         /// <param name="context">context is required by the performed event</param>
-        public void OnJump()
+        public void OnJump(InputActionEventData data)
         {
             // if (context.performed)
-            { 
-            hasJumpInput = true;
-            if (jumpPressed != null)
+            if (data.GetButtonDown())
             {
-                jumpPressed();
+                hasJumpInput = true;
+                if (jumpPressed != null)
+                {
+                    jumpPressed();
+                }
             }
 
-            }
             // else if (context.canceled)
             {
-            hasJumpInput = false;
+                hasJumpInput = false;
             }
         }
 
