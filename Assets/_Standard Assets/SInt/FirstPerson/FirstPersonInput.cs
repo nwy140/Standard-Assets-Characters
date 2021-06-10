@@ -1,4 +1,5 @@
 using System;
+using Rewired;
 using StandardAssets.Characters.Common;
 
 
@@ -36,9 +37,9 @@ namespace StandardAssets.Characters.FirstPerson
 		/// Handles the sprint input
 		/// </summary>
 		/// <param name="context">context is required by the performed event</param>
-		public override void OnSprint()
+		public override void OnSprint(InputActionEventData data)
 		{
-			base.OnSprint();
+			base.OnSprint(data);
 			m_IsCrouching = false;
 		}
 		

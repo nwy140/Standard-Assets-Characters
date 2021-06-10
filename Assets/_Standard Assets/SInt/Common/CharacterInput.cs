@@ -273,16 +273,17 @@ namespace StandardAssets.Characters.Common
         /// Handles the sprint input
         /// </summary>
         /// <param name="context">context is required by the performed event</param>
-        public virtual void OnSprint()
+        public virtual void OnSprint(InputActionEventData data)
         {
             BroadcastInputAction(ref m_IsSprinting, sprintStarted, sprintEnded);
+            // Bind Actions to custom delegate methods later
         }
 
         /// <summary>
         /// Handles the recentre input. 
         /// </summary>
         /// <param name="context">context is required by the performed event</param>
-        public virtual void OnRecentre()
+        public virtual void OnRecentre(InputActionEventData data)
         {
             //This implementation is done in ThirdPersonInput
         }
@@ -430,7 +431,11 @@ namespace StandardAssets.Characters.Common
             }
             else
             {
-                m_lookInput = Vector2.zero;
+                if (m_UsingMouseInput == false)
+                {
+                    m_lookInput = Vector2.zero;
+                    m_UsingMouseInput = true;
+                }
             }
         }
 

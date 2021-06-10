@@ -36,7 +36,7 @@ public class StandardRewiredInputWrapper : MonoBehaviour // Rewired Wrapper For 
 
         Evade,
         Jump,
-        Run,
+        Sprint,
 
         #endregion 1 : Motion
 
@@ -65,7 +65,8 @@ public class StandardRewiredInputWrapper : MonoBehaviour // Rewired Wrapper For 
         mouseLookX,
         mouseLookY,
         gamepadLookX,
-        gamepadLookY
+        gamepadLookY,
+        Recentre,
 
         #endregion 5 : Camera
 
@@ -128,7 +129,13 @@ public class StandardRewiredInputWrapper : MonoBehaviour // Rewired Wrapper For 
         player.AddInputEventDelegate(_charInput.OnJumpUp, UpdateLoopType.Update,
             InputActionEventType.ButtonJustReleased,
             nameof(Btns.Jump));
-        // Run,
+        // Sprint,
+        player.AddInputEventDelegate(_charInput.OnSprint, UpdateLoopType.Update,
+            InputActionEventType.ButtonJustPressed,
+            nameof(Btns.Sprint));
+        player.AddInputEventDelegate(_charInput.OnSprint, UpdateLoopType.Update,
+            InputActionEventType.ButtonJustReleased,
+            nameof(Btns.Sprint));
 
         #endregion 1 : Motion
 
@@ -168,12 +175,17 @@ public class StandardRewiredInputWrapper : MonoBehaviour // Rewired Wrapper For 
         // Strafe
         player.AddInputEventDelegate(_charInput.OnStrafe, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed,
             nameof(Btns.Strafe));
-        player.AddInputEventDelegate(_charInput.OnStrafe, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased,
+        player.AddInputEventDelegate(_charInput.OnStrafe, UpdateLoopType.Update,
+            InputActionEventType.ButtonJustReleased,
             nameof(Btns.Strafe));
         // mouseLookX,
         // mouseLookY,
         // gamepadLookX,
-        // gamepadLookY
+        // gamepadLookY,
+        // Recentre
+        player.AddInputEventDelegate(_charInput.OnRecentre, UpdateLoopType.Update,
+            InputActionEventType.ButtonJustPressed,
+            nameof(Btns.Recentre));
 
         #endregion 5 : Camera
 
@@ -203,14 +215,15 @@ public class StandardRewiredInputWrapper : MonoBehaviour // Rewired Wrapper For 
                 break;
         }
 
+
         if (data.actionName == nameof(Btns.mouseLookX) || data.actionName == nameof(Btns.mouseLookY))
         {
             if (data.GetAxis() != 0.0f)
                 _charInput.OnMouseLook(data.player.GetAxis2D(nameof(Btns.mouseLookX), nameof(Btns.mouseLookY)));
         }
-        if (data.actionName == nameof(Btns.gamepadLookX) || data.actionName == nameof(Btns.gamepadLookY))
+        else if (data.actionName == nameof(Btns.gamepadLookX) || data.actionName == nameof(Btns.gamepadLookY))
         {
-                _charInput.OnGamepadLook(data.player.GetAxis2D(nameof(Btns.gamepadLookX), nameof(Btns.gamepadLookY)));
+            _charInput.OnGamepadLook(data.player.GetAxis2D(nameof(Btns.gamepadLookX), nameof(Btns.gamepadLookY)));
         }
     }
 
