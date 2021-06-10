@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using StandardAssets.Characters.Common;
 using UnityEngine;
  
-    public class SIntRegularInputWrapper : MonoBehaviour
+    public class SIntRewiredInputEventsWrapper : MonoBehaviour
     {
         private CharacterInput _characterInput;
 
