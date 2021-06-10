@@ -59,8 +59,10 @@ public class StandardRewiredInputWrapper : MonoBehaviour // Rewired Wrapper For 
 
         LockOn,
         LockOnCycle,
-        CameraX,
-        CameraY,
+        mouseLookX,
+        mouseLookY,
+        gamepadLookX,
+        gamepadLookY
 
         #endregion 5 : Camera
 
@@ -94,16 +96,20 @@ public class StandardRewiredInputWrapper : MonoBehaviour // Rewired Wrapper For 
         #region Rewired Rewired Input Event Bindings
 
         #region 0 : Default
+
         // This event will be called every frame the "Move Horizontal" axis is non-zero and once more when it returns to zero.
-        player.AddInputEventDelegate(_charInput.OnMoveX, UpdateLoopType.Update, InputActionEventType.AxisActiveOrJustInactive, 
+        player.AddInputEventDelegate(_charInput.OnMoveX, UpdateLoopType.Update,
+            InputActionEventType.AxisActiveOrJustInactive,
             nameof(Btns.MoveHorizontal));
         // MoveVertical,
         // This event will be called every frame the "Move Horizontal" axis is non-zero and once more when it returns to zero.
-        player.AddInputEventDelegate(_charInput.OnMoveY, UpdateLoopType.Update, InputActionEventType.AxisActiveOrJustInactive, 
+        player.AddInputEventDelegate(_charInput.OnMoveY, UpdateLoopType.Update,
+            InputActionEventType.AxisActiveOrJustInactive,
             nameof(Btns.MoveVertical));
         // Empty,
         // This event will be called when the "Empty" button is held for at least 1 seconds and then released
-        player.AddInputEventDelegate(EmptyMethodLog, UpdateLoopType.Update, InputActionEventType.ButtonPressedForTimeJustReleased,   
+        player.AddInputEventDelegate(EmptyMethodLog, UpdateLoopType.Update,
+            InputActionEventType.ButtonPressedForTimeJustReleased,
             nameof(Btns.Empty), new object[] {1.0f});
 
         #endregion 0 : Default
@@ -113,7 +119,7 @@ public class StandardRewiredInputWrapper : MonoBehaviour // Rewired Wrapper For 
         // Evade,
         // Jump,
         // This event will be called every frame the "Attack" action is updated
-        player.AddInputEventDelegate(_charInput.OnJump, UpdateLoopType.Update, 
+        player.AddInputEventDelegate(_charInput.OnJump, UpdateLoopType.Update,
             nameof(Btns.Jump));
         // Run,
 
@@ -123,8 +129,9 @@ public class StandardRewiredInputWrapper : MonoBehaviour // Rewired Wrapper For 
         // Attack,
 
         #region 2 : Activity
+
         // This event will be called every frame the "Attack" action is updated
-        player.AddInputEventDelegate(EmptyMethodStub, UpdateLoopType.Update, 
+        player.AddInputEventDelegate(EmptyMethodStub, UpdateLoopType.Update,
             nameof(Btns.Attack));
 
         // This event will be called when the "Attack" button is first pressed
@@ -134,6 +141,7 @@ public class StandardRewiredInputWrapper : MonoBehaviour // Rewired Wrapper For 
         // This event will be called when the "Attack" button is first released
         player.AddInputEventDelegate(EmptyMethodStub, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased,
             nameof(Btns.Attack));
+
         #endregion 2 : Activity
 
         #region 3 : Techniques
@@ -150,12 +158,15 @@ public class StandardRewiredInputWrapper : MonoBehaviour // Rewired Wrapper For 
 
         // LockOn,
         // LockOnCycle,
-        // CameraX,
-        // CameraY,
+        // mouseLookX,
+        // mouseLookY,
+        // gamepadLookX,
+        // gamepadLookY
 
         #endregion 5 : Camera
 
         #endregion Rewired Input Event Bindings
+
         // The update loop you choose for the event matters. Make sure your chosen update loop is enabled in
         // the Settings page of the Rewired editor or you won't receive any events.
     }
@@ -178,6 +189,16 @@ public class StandardRewiredInputWrapper : MonoBehaviour // Rewired Wrapper For 
             case nameof(Btns.Jump):
                 if (data.GetButtonDown()) Debug.Log("Jumpa!");
                 break;
+        }
+
+        if (data.actionName == nameof(Btns.mouseLookX) || data.actionName == nameof(Btns.mouseLookY))
+        {
+            if (data.GetAxis() != 0.0f)
+                _charInput.OnMouseLook(data.player.GetAxis2D(nameof(Btns.mouseLookX), nameof(Btns.mouseLookY)));
+        }
+        if (data.actionName == nameof(Btns.gamepadLookX) || data.actionName == nameof(Btns.gamepadLookY))
+        {
+                _charInput.OnGamepadLook(data.player.GetAxis2D(nameof(Btns.gamepadLookX), nameof(Btns.gamepadLookY)));
         }
     }
 

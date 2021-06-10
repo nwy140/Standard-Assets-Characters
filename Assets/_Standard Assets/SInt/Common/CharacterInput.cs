@@ -348,7 +348,7 @@ namespace StandardAssets.Characters.Common
         /// Provides the input vector for the mouse look control.
         /// </summary>
         /// <param name="context">context is required by the performed event</param>
-        public void OnMouseLook()
+        public void OnMouseLook(InputActionEventData data)
         {
             // var newInput = context.ReadValue<Vector2>();
             m_UsingMouseInput = true;
@@ -374,6 +374,32 @@ namespace StandardAssets.Characters.Common
 
             // m_lookInput += newInput;
         }
+        public void OnMouseLook(Vector2 axis)
+        {
+            var newInput = axis;
+            m_UsingMouseInput = true;
+
+            //When using an InputGainAcceleration component, the look input processing should happen there.
+            if (m_UseInputGainAcceleration)
+            {
+                if (m_CameraInputGainAcceleration.hasProcessedMouseLookInput)
+                {
+                    m_lookInput = Vector2.zero;
+                    m_CameraInputGainAcceleration.hasProcessedMouseLookInput = false;
+                }
+            }
+            else
+            {
+                // If the mouse look input was already processed, then clear the value before accumulating again
+                if (m_HasProcessedMouseLookInput)
+                {
+                    m_lookInput = Vector2.zero;
+                    m_HasProcessedMouseLookInput = false;
+                }
+            }
+
+            m_lookInput += newInput;
+        }
 
         /// <summary>
         /// Provides the input vector for the gamepad look control.
@@ -387,6 +413,22 @@ namespace StandardAssets.Characters.Common
                 // m_lookInput = context.ReadValue<Vector2>();
             }
             // else if (context.canceled)
+            {
+                m_lookInput = Vector2.zero;
+            }
+        }
+        /// <summary>
+        /// Provides the input vector for the gamepad look control.
+        /// </summary>
+        /// <param name="context">context is required by the performed event</param>
+        public void OnGamepadLook(Vector2 axis)
+        {
+            if (axis!=Vector2.zero)
+            {
+                m_UsingMouseInput = false;
+                m_lookInput = axis;
+            }
+            else
             {
                 m_lookInput = Vector2.zero;
             }
@@ -450,7 +492,7 @@ namespace StandardAssets.Characters.Common
                 }
             }
 
-            // else if (context.canceled)
+            else if (data.GetButtonUp())
             {
                 hasJumpInput = false;
             }

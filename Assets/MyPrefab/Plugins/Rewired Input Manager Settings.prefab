@@ -293,7 +293,16 @@ MonoBehaviour:
       _userAssignable: 1
       _categoryId: 3
     - _id: 14
-      _name: CameraX
+      _name: mouseLookX
+      _type: 0
+      _descriptiveName: CameraRight
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 1
+      _userAssignable: 1
+      _categoryId: 4
+    - _id: 22
+      _name: gamepadLookX
       _type: 0
       _descriptiveName: CameraRight
       _positiveDescriptiveName: 
@@ -302,7 +311,16 @@ MonoBehaviour:
       _userAssignable: 1
       _categoryId: 4
     - _id: 15
-      _name: CameraY
+      _name: mouseLookY
+      _type: 0
+      _descriptiveName: CameraUp
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 1
+      _userAssignable: 1
+      _categoryId: 4
+    - _id: 23
+      _name: gamepadLookY
       _type: 0
       _descriptiveName: CameraUp
       _positiveDescriptiveName: 
@@ -397,7 +415,7 @@ MonoBehaviour:
       - categoryId: 3
         actionIds: 0d000000
       - categoryId: 4
-        actionIds: 0a0000000b0000000e0000000f000000
+        actionIds: 0a0000000b0000000e0000000f0000001600000017000000
       - categoryId: 5
         actionIds: 1200000011000000
     inputBehaviors:
@@ -434,7 +452,7 @@ MonoBehaviour:
       _digitalAxisSensitivity: 3
       _mouseXYAxisMode: 0
       _mouseOtherAxisMode: 0
-      _mouseXYAxisSensitivity: 1
+      _mouseXYAxisSensitivity: 0.02
       _mouseXYAxisDeltaCalc: 0
       _mouseOtherAxisSensitivity: 1
       _customControllerAxisSensitivity: 1
@@ -614,7 +632,7 @@ MonoBehaviour:
         _modifierKey2: 0
         _modifierKey3: 0
       - _actionCategoryId: 0
-        _actionId: 14
+        _actionId: 22
         _elementType: 0
         _elementIdentifierId: 2
         _axisRange: 0
@@ -625,7 +643,7 @@ MonoBehaviour:
         _modifierKey2: 0
         _modifierKey3: 0
       - _actionCategoryId: 0
-        _actionId: 15
+        _actionId: 23
         _elementType: 0
         _elementIdentifierId: 3
         _axisRange: 0
@@ -1030,7 +1048,7 @@ MonoBehaviour:
     controllerMapLayoutManagerRuleSets: []
     controllerMapEnablerRuleSets: []
     playerIdCounter: 2
-    actionIdCounter: 22
+    actionIdCounter: 24
     actionCategoryIdCounter: 6
     inputBehaviorIdCounter: 4
     mapCategoryIdCounter: 3
