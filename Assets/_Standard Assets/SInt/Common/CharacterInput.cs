@@ -291,7 +291,7 @@ namespace StandardAssets.Characters.Common
         /// Handles the strafe input.
         /// </summary>
         /// <param name="context">context is required by the performed event</param>
-        public virtual void OnStrafe()
+        public virtual void OnStrafe(InputActionEventData data)
         {
             //This implementation is done in ThirdPersonInput
         }
@@ -496,6 +496,18 @@ namespace StandardAssets.Characters.Common
             {
                 hasJumpInput = false;
             }
+        }
+        public void OnJumpDown(InputActionEventData data)
+        {
+            hasJumpInput = true;
+            if (jumpPressed != null)
+            {
+                jumpPressed();
+            }
+        }
+        public void OnJumpUp(InputActionEventData data)
+        {
+            hasJumpInput = false;
         }
 
         // Initializes the Touch Controls when need

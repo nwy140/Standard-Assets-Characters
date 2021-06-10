@@ -8,8 +8,10 @@ using UnityEngine;
 // Read: https://guavaman.com/projects/rewired/docs/HowTos.html Method 2 section
 // https://guavaman.com/projects/rewired/docs/api-reference/html/T_Rewired_InputActionEventType.htm
 // https://forum.unity.com/threads/rewired-advanced-input-for-unity.270693/page-19
-// Rewired also supports gamepad vibration: https://guavaman.com/projects/rewired/docs/FAQ.html#force-feedback
+// Rewired also supports gamepad vibration
+// Read: https://guavaman.com/projects/rewired/docs/FAQ.html#force-feedback
 // InputActionEventType is an enum with all sort of properties i.e ButtonJustDoublePressed	
+// Read: https://guavaman.com/projects/rewired/docs/api-reference/html/T_Rewired_InputActionEventType.htm
 public class StandardRewiredInputWrapper : MonoBehaviour // Rewired Wrapper For StandardAsset's Character
 {
     public int playerId;
@@ -59,6 +61,7 @@ public class StandardRewiredInputWrapper : MonoBehaviour // Rewired Wrapper For 
 
         LockOn,
         LockOnCycle,
+        Strafe,
         mouseLookX,
         mouseLookY,
         gamepadLookX,
@@ -119,7 +122,11 @@ public class StandardRewiredInputWrapper : MonoBehaviour // Rewired Wrapper For 
         // Evade,
         // Jump,
         // This event will be called every frame the "Attack" action is updated
-        player.AddInputEventDelegate(_charInput.OnJump, UpdateLoopType.Update,
+        player.AddInputEventDelegate(_charInput.OnJumpDown, UpdateLoopType.Update,
+            InputActionEventType.ButtonJustPressed,
+            nameof(Btns.Jump));
+        player.AddInputEventDelegate(_charInput.OnJumpUp, UpdateLoopType.Update,
+            InputActionEventType.ButtonJustReleased,
             nameof(Btns.Jump));
         // Run,
 
@@ -158,6 +165,11 @@ public class StandardRewiredInputWrapper : MonoBehaviour // Rewired Wrapper For 
 
         // LockOn,
         // LockOnCycle,
+        // Strafe
+        player.AddInputEventDelegate(_charInput.OnStrafe, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed,
+            nameof(Btns.Strafe));
+        player.AddInputEventDelegate(_charInput.OnStrafe, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased,
+            nameof(Btns.Strafe));
         // mouseLookX,
         // mouseLookY,
         // gamepadLookX,

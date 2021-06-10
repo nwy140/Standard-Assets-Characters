@@ -307,7 +307,7 @@ MonoBehaviour:
       _descriptiveName: CameraRight
       _positiveDescriptiveName: 
       _negativeDescriptiveName: 
-      _behaviorId: 1
+      _behaviorId: 2
       _userAssignable: 1
       _categoryId: 4
     - _id: 15
@@ -325,7 +325,7 @@ MonoBehaviour:
       _descriptiveName: CameraUp
       _positiveDescriptiveName: 
       _negativeDescriptiveName: 
-      _behaviorId: 1
+      _behaviorId: 2
       _userAssignable: 1
       _categoryId: 4
     - _id: 16
@@ -373,6 +373,15 @@ MonoBehaviour:
       _behaviorId: 0
       _userAssignable: 1
       _categoryId: 0
+    - _id: 24
+      _name: Strafe
+      _type: 1
+      _descriptiveName: CrossHair Body Look At Aim
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 4
     actionCategories:
     - _name: Default
       _descriptiveName: Default
@@ -415,7 +424,7 @@ MonoBehaviour:
       - categoryId: 3
         actionIds: 0d000000
       - categoryId: 4
-        actionIds: 0a0000000b0000000e0000000f0000001600000017000000
+        actionIds: 0a0000000b000000180000000e0000000f0000001600000017000000
       - categoryId: 5
         actionIds: 1200000011000000
     inputBehaviors:
@@ -427,7 +436,7 @@ MonoBehaviour:
       _digitalAxisInstantReverse: 0
       _digitalAxisGravity: 3
       _digitalAxisSensitivity: 3
-      _mouseXYAxisMode: 0
+      _mouseXYAxisMode: 1
       _mouseOtherAxisMode: 0
       _mouseXYAxisSensitivity: 1
       _mouseXYAxisDeltaCalc: 0
@@ -443,7 +452,7 @@ MonoBehaviour:
       _buttonRepeatRate: 30
       _buttonRepeatDelay: 0
     - _id: 1
-      _name: 3rdpersonCamera
+      _name: mouseCamera
       _joystickAxisSensitivity: 1
       _digitalAxisSimulation: 1
       _digitalAxisSnap: 1
@@ -466,7 +475,7 @@ MonoBehaviour:
       _buttonRepeatRate: 30
       _buttonRepeatDelay: 0
     - _id: 2
-      _name: MotionCamera
+      _name: gamepadCamera
       _joystickAxisSensitivity: 1
       _digitalAxisSimulation: 1
       _digitalAxisSnap: 1
@@ -753,7 +762,7 @@ MonoBehaviour:
         _modifierKey2: 0
         _modifierKey3: 0
       - _actionCategoryId: 0
-        _actionId: -1
+        _actionId: 24
         _elementType: 1
         _elementIdentifierId: 12
         _axisRange: 0
@@ -926,6 +935,17 @@ MonoBehaviour:
         _modifierKey2: 0
         _modifierKey3: 0
       - _actionCategoryId: 0
+        _actionId: 24
+        _elementType: 1
+        _elementIdentifierId: -1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 103
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
         _actionId: 11
         _elementType: 1
         _elementIdentifierId: -1
@@ -1048,7 +1068,7 @@ MonoBehaviour:
     controllerMapLayoutManagerRuleSets: []
     controllerMapEnablerRuleSets: []
     playerIdCounter: 2
-    actionIdCounter: 24
+    actionIdCounter: 25
     actionCategoryIdCounter: 6
     inputBehaviorIdCounter: 4
     mapCategoryIdCounter: 3
